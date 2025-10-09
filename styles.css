@@ -1,0 +1,214 @@
+/* ======== VARIABLES DE COLOR ======== */
+:root {
+  --color-principal: #2c6e49; /* Verde campo */
+  --color-secundario: #f0a202; /* Amarillo maíz */
+  --color-fondo: #f8f9fa;
+  --color-texto: #333;
+  --color-blanco: #fff;
+}
+
+/* ======== RESETEO Y BASE ======== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* ======== ENCABEZADO ======== */
+header {
+  background: var(--color-principal);
+  color: var(--color-blanco);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* ======== MENÚ DE NAVEGACIÓN ======== */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--color-secundario);
+}
+
+/* ======== BOTÓN MENÚ RESPONSIVO ======== */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-blanco);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* ======== SECCIONES GENERALES ======== */
+main section {
+  padding: 80px 10%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ======== HERO PRINCIPAL ======== */
+#inicio {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+              url('img/granja-fondo.jpg') center/cover no-repeat;
+  color: var(--color-blanco);
+  text-align: center;
+  padding: 120px 20px;
+  border-radius: 0 0 30px 30px;
+}
+
+#inicio h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+#inicio p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e38d00;
+}
+
+/* ======== TÍTULOS DE SECCIONES ======== */
+section h2 {
+  color: var(--color-principal);
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+/* ======== QUIENES SOMOS / QUÉ HACEMOS ======== */
+#nosotros, #que-hacemos {
+  background: var(--color-blanco);
+  border-radius: 15px;
+  padding: 50px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 50px;
+}
+
+/* ======== MISIÓN Y VISIÓN ======== */
+#mision, #vision {
+  background-color: var(--color-fondo);
+  border-left: 5px solid var(--color-principal);
+  padding: 30px 50px;
+  margin-bottom: 40px;
+}
+
+#mision p, #vision p {
+  font-size: 1.05rem;
+}
+
+/* ======== VALORES ======== */
+#valores ul {
+  list-style: none;
+  max-width: 600px;
+  margin: auto;
+}
+
+#valores li {
+  background: var(--color-blanco);
+  margin: 10px 0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ======== CONTACTO ======== */
+#contacto {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to right, #f0f0f0, #fafafa);
+  border-radius: 20px;
+}
+
+#contacto a {
+  color: var(--color-principal);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#contacto a:hover {
+  color: var(--color-secundario);
+}
+
+/* ======== PIE DE PÁGINA ======== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-size: 0.9rem;
+  margin-top: 50px;
+}
+
+/* ======== RESPONSIVE DESIGN ======== */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: var(--color-principal);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    text-align: right;
+    padding: 20px;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  #inicio h2 {
+    font-size: 1.6rem;
+  }
+
+  #inicio p {
+    font-size: 1rem;
+  }
+}
