@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Granandesa</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Soluciones nutricionales para el sector agropecuario en Colombia.">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Granandesa</h1>
+        </div>
+        <nav>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <a href="mailto:info@granandesa.com" class="institucional"><i class="fa-solid fa-user"></i></a>
+        </nav>
+    </header>
+    <main>
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <div class="contact-layout">
+                <div class="left-column">
+                    <div class="contact-info">
+                        <h3>Datos de Contacto</h3>
+                        <ul>
+                            <li>Dirección: Cra 14 #2 -22, Mosquera, Cundinamarca, Colombia</li>
+                            <li>Teléfono: +57 123 456 7890</li>
+                            <li>Email: <a href="mailto:info@granandesa.com">info@granandesa.com</a></li>
+                            <li><a href="mailto:info@granandesa.com">Correo Institucional</a></li>
+                        </ul>
+                    </div>
+                    <div class="map-container">
+                        <h3>Ubicación</h3>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1988.2212842288761!2d-74.18614323924045!3d4.692902991579638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9dacc1a2b5c5%3A0x3ab861c64124bd18!2sGRANANDESA!5e0!3m2!1ses-419!2sco!4v1760672196005!5m2!1ses-419!2sco" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envía un mensaje</h3>
+                    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <label for="teléfono">Teléfono:</label>
+                        <input type="tel" id="teléfono" name="teléfono" pattern="^\+?\d{0,3}?\s?\d{3}\s?\d{3}\s?\d{4}$" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                        <button type="submit" class="cta-button">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Granandesa. Todos los derechos reservados. | By Andres Ubaque</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
