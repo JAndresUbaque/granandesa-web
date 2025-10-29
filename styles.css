@@ -1,9 +1,11 @@
 /* ======== VARIABLES DE COLOR ======== */
 :root {
-    --color-principal: #1A3C6E; /* Azul oscuro, principal para el logo y encabezado */
-    --color-secundario: #007BFF; /* Azul de la curva superior, más vibrante como en la imagen. O mantener #87CEEB si prefieres un azul más claro/pastel para detalles. */
-    --color-fondo: #FFFFFF; /* Blanco puro, para el fondo general y el fondo del logo */
-    --color-texto: #333333; /* Gris oscuro para texto general (o #000000 para negro puro) */
+    --color-principal: #0f2b5a;      /* azul marino profundo */
+    --color-degrade: #1e6fb8;       /* tono intermedio */
+    --color-brillante: #1e97d4;     /* azul claro del logo */
+    --color-secundario: #2A7BFF;    /* Azul vibrante para hover y botones */
+    --color-fondo: #FFFFFF;
+    --color-texto: #333333;       
     --color-blanco: #FFFFFF;
 }
 
@@ -22,25 +24,45 @@ body {
     margin: 0; /* Elimina el margen por defecto del navegador. Margin es el espacio fuera del elemento. */
     padding: 0; /* Asegura que no haya padding interno. */
 }
+
 /* ======== ENCABEZADO ======== */
 header {
-    background: var(--color-principal);
+    background: TRS;
     color: var(--color-blanco);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 35px;
+    padding: 10px 20px;
+    height: 80px;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-   
+    transition: all 0.4s ease; 
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+      100deg,
+      var(--color-principal) 0%,     /* oscuro domina */
+      var(--color-principal) 45%,    /* se mantiene fuerte */
+      var(--color-degrade) 70%,      /* leve transición */
+      var(--color-brillante) 95%     /* toque de luz al final */
+  );
+  z-index: -1;
+  box-shadow: 0 10px 25px rgba(10, 40, 90, 0.4),
+              0 0 35px rgba(30, 151, 212, 0.4);
+  transition: all 0.5s ease;
+  clip-path: path("M0,68 C250,60 600,75 950,63 C1150,58 1300,70 1400,65 L1400,0 L0,0 Z");
 }
 
 .logo h1 {
     font-size: 1.3rem;
     font-weight: 700;
     margin: 0;
+    transform: translateY(-6px);
 }
 
 /* ======== MENÚ DE NAVEGACIÓN ======== */
@@ -57,6 +79,7 @@ nav ul.nav-menu {
     gap: 25px;
     margin: 0;
     padding: 0;
+    transform: translateY(-6px); /* Sube las palabras del menú */
 }
 
 nav ul.nav-menu li a {
@@ -64,11 +87,17 @@ nav ul.nav-menu li a {
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 15px;
+    border: 20px;
 }
 
 nav ul.nav-menu li a:hover {
-    color: var(--color-secundario);
+    color: var(--color-blanco);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(0, 194, 255, 0.4);
 }
 
 /* ======== BOTÓN MENÚ RESPONSIVO ======== */
@@ -79,6 +108,7 @@ nav ul.nav-menu li a:hover {
     color: var(--color-blanco);
     font-size: 1.8rem;
     cursor: pointer;
+    transform: translateY(-6px); /* Sube las palabras del menú */
 }
 
 /* ======== ENLACE INSTITUCIONAL ======== */
@@ -91,6 +121,7 @@ nav ul.nav-menu li a:hover {
     border-radius: 5px;
     transition: background 0.3s ease;
     margin-right: 0;
+    transform: translateY(-7px); /* Sube las palabras del menú */
 }
 
 .institucional:hover {
@@ -107,7 +138,6 @@ main section {
     padding: 90px 10%;
     max-width: 1200px;
     margin: auto;
-
 }
 
 /* ======== LOGO PRINCIPAL ======== */
@@ -200,7 +230,6 @@ main section {
     max-width: 1200px;
     margin: 0 auto;
 }
-
 
 /* ======== CONTACTO ======== */
 #contacto {
@@ -440,32 +469,105 @@ main section {
 .slider-prev:hover, .slider-next:hover {
     background: var(--color-secundario);
 }
+
 /*=== PIE DE PÁGINA ======== */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: var(--color-principal);
     color: var(--color-blanco);
     font-size: 0.9rem;
     margin-top: 50px;
+    position: relative;
+    height: 60px;
+  background: linear-gradient(
+      100deg,
+      var(--color-brillante) 0%,   /* oscuro al inicio */
+      var(--color-degrade) 35%,    /* transición intermedia */
+      var(--color-principal) 95%   /* toque claro al final */
+  );
+  clip-path: path("M0,10 C300,20 800,-5 1400,15 L1400,160 L0,160 Z");
+  box-shadow: 0 -10px 25px rgba(10, 40, 90, 0.35),
+              0 0 35px rgba(30, 151, 212, 0.3);
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* ======== CONTROLES MÓVIL (NUEVO) ======== */
+.mobile-controls {
+    display: none; /* Oculto en desktop */
+    gap: 12px;     /* Espacio entre ☰ y 👤 */
+    align-items: center;
+    margin-top: -12px; /* SUBE ambos */
+}
+
+.mobile-controls .menu-toggle,
+.mobile-controls .institucional {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.mobile-controls .institucional {
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+}
+
+.mobile-controls .menu-toggle:hover,
+.mobile-controls .institucional:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
+}
+
+/* ======== MENÚ DESKTOP (NUEVO) ======== */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.desktop-only {
+    display: block;
 }
 
 /* ======== RESPONSIVE DESIGN ======== */
 @media (max-width: 768px) {
     header {
+        height: 90px; /* Compacto pero con espacio para ola abajo */
         padding: 0 20px;
+        align-items: center; /* CENTRA VERTICAL PERFECTO */
+        justify-content: space-between;
     }
-
+    header::before {
+        clip-path: path("M0,60 C60,60 110,55 160,52 C190,50 220,50 250,52 C280,54 310,56 340,57 C370,58 400,58 430,58 C460,58 490,57 520,56 C550,54 580,52 610,52 C640,54 680,56 750,60 L750,0 L0,0 Z"); /* OLA ABAJO 60PX, PICOS BAJOS */
+        z-index: -1;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+        transform: translateY(-10px);
+    }
+    
     nav {
-        gap: 15px;
+        gap: 10px;
+        padding-top: 8px; /* SUBE PALABRAS VERTICALMENTE */
     }
-
+    
     nav ul.nav-menu {
         display: none;
         flex-direction: column;
-        background: rgb(26, 60, 110, 0.95);
+        background: rgba(26, 60, 110, 0.95);
         position: absolute;
-        top: 50px;
+        top: 80px; /* Debajo header (ajustado por altura 90px) */
         right: 20px;
         width: 250px;
         padding: 20px;
@@ -474,6 +576,7 @@ footer {
         transition: opacity 0.3s ease, transform 0.3s ease;
         opacity: 0;
         transform: translateY(-10px);
+        z-index: 999;
     }
 
     nav ul.nav-menu.active {
@@ -483,17 +586,28 @@ footer {
     }
 
     nav ul.nav-menu li a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 10px 0;
+        text-align: center;
     }
 
     .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: var(--color-blanco);
-        font-size: 2rem;
-        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        transform: translateY(-6px);
+    }
+
+    .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
     }
 
     .contact-layout {
@@ -507,6 +621,7 @@ footer {
 
     .institucional {
         padding: 5px;
+        transform: translateY(-7px);
     }
 
     .institucional i {
@@ -527,7 +642,7 @@ footer {
     }
 
     #inicio {
-        height: 48vh; /* Reducimos la altura del contenedor */
+        height: 48vh;
         background-size: auto;
         background-attachment: scroll;
         display: flex;
@@ -535,8 +650,8 @@ footer {
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 40px 20px; /* espacio proporcional para texto */
-        }
+        padding: 40px 20px;
+    }
 
     #inicio h2 {
         font-size: 1.5rem;
@@ -557,5 +672,62 @@ footer {
 
     .main-logo {
         max-width: 150px;
+    }
+
+    footer {
+        position: relative;
+        height: 70px;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(
+            120deg,
+            var(--color-brillante) 0%,   /* Claro al inicio */
+            var(--color-degrade) 50%,    /* Transición media */
+            var(--color-principal) 100%  /* Oscuro predominante */
+        );
+        clip-path: path("M0,12 C250,8 600,-6 750,12 L750,120 L0,120 Z");
+        box-shadow: 0 -6px 18px rgba(10, 40, 90, 0.3),
+                    0 0 25px rgba(42, 123, 255, 0.25);
+        z-index: -1;
+    }
+
+    footer p {
+        font-size: 0.75rem;
+        margin: 5px;
+        margin-top: 7px;
+        padding: 0 10px;
+    }
+
+    footer a {
+        color: var(--color-brillante);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* === ACTIVAR CONTROLES MÓVIL === */
+    .mobile-controls {
+        display: flex !important;
+    }
+
+    /* === OCULTAR MENÚ DESKTOP === */
+    .desktop-nav,
+    .desktop-nav .nav-menu,
+    .desktop-only {
+        display: none !important;
     }
 }

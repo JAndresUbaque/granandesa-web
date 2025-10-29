@@ -1,61 +1,59 @@
-const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.nav-menu');
-const contactForm = document.getElementById('contactForm');
-const sliders = document.querySelectorAll('.slider-wrapper');
+// === MENÚ RESPONSIVE ===
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
 
-// Menú responsive
-toggle.addEventListener('click', () => {
-    menu.classList.toggle('active');
-});
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        // Opcional: cambiar icono a X al abrir
+        menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+    });
+}
 
-// Toggle detalles
+// === TOGGLE DETALLES PRODUCTOS ===
 document.querySelectorAll('.details-button').forEach(button => {
     button.addEventListener('click', () => {
         const details = button.nextElementSibling;
-        if (details.style.display === 'block') {
-            details.style.display = 'none';
-        } else {
-            details.style.display = 'block';
-        }
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
     });
 });
 
-// Validación del formulario de contacto
-
+// === VALIDACIÓN FORMULARIO ===
+const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-        const nombre = document.getElementById('nombre').value;
-        const telefono = document.getElementById('teléfono').value;
-        const email = document.getElementById('email').value;
-        const mensaje = document.getElementById('mensaje').value;
-
-        if (!nombre || !telefono || !email || !mensaje) {
+        const campos = ['nombre', 'teléfono', 'email', 'mensaje'];
+        let vacio = false;
+        campos.forEach(campo => {
+            if (!document.getElementById(campo).value.trim()) vacio = true;
+        });
+        if (vacio) {
             e.preventDefault();
             alert('Por favor, completa todos los campos.');
         }
     });
 }
 
+// === SLIDERS DE PRODUCTOS ===
+const sliders = document.querySelectorAll('.slider-wrapper');
 sliders.forEach((wrapper) => {
-    let currentIndex = 0; // Índice actual, repito: inicia en 0 para el primer producto.
-    const cards = wrapper.querySelectorAll('.product-card'); // Todas las tarjetas en este wrapper.
-    const cardWidth = cards[0].offsetWidth + 20; // Ancho de una tarjeta + gap (20px del CSS). offsetWidth mide el ancho real.
-    const prevButton = wrapper.previousElementSibling; // Botón prev (hermano anterior).
-    const nextButton = wrapper.nextElementSibling; // Botón next (hermano siguiente).
+    let currentIndex = 0;
+    const cards = wrapper.querySelectorAll('.product-card');
+    const cardWidth = cards[0].offsetWidth + 20;
+    const prevButton = wrapper.previousElementSibling;
+    const nextButton = wrapper.nextElementSibling;
 
-    // Event listener para botón next: mueve a la derecha.
     nextButton.addEventListener('click', () => {
-        if (currentIndex < cards.length - 1) { // Si no estamos en la última tarjeta.
-            currentIndex++; // Aumenta el índice (repito: currentIndex es la posición actual).
-            wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`; // Mueve el wrapper a la izquierda. translateX es CSS transform para deslizar.
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+            wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
         }
     });
 
-    // Event listener para botón prev: mueve a la izquierda.
     prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) { // Si no estamos en la primera.
-            currentIndex--; // Disminuye el índice.
-            wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`; // Mueve de vuelta.
+        if (currentIndex > 0) {
+            currentIndex--;
+            wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
         }
     });
 });
