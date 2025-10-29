@@ -539,16 +539,21 @@ footer {
     display: block;
 }
 
-/* ======== RESPONSIVE DESIGN ======== */
+.mobile-menu {
+        display: none; /* Oculto en desktop */
+    }
+
+
 @media (max-width: 768px) {
     header {
-        height: 90px; /* Compacto pero con espacio para ola abajo */
+        height: 90px;
         padding: 0 20px;
-        align-items: center; /* CENTRA VERTICAL PERFECTO */
+        align-items: center;
         justify-content: space-between;
     }
+
     header::before {
-        clip-path: path("M0,60 C60,60 110,55 160,52 C190,50 220,50 250,52 C280,54 310,56 340,57 C370,58 400,58 430,58 C460,58 490,57 520,56 C550,54 580,52 610,52 C640,54 680,56 750,60 L750,0 L0,0 Z"); /* OLA ABAJO 60PX, PICOS BAJOS */
+        clip-path: path("M0,60 C60,60 110,55 160,52 C190,50 220,50 250,52 C280,54 310,56 340,57 C370,58 400,58 430,58 C460,58 490,57 520,56 C550,54 580,52 610,52 C640,54 680,56 750,60 L750,0 L0,0 Z");
         z-index: -1;
     }
     
@@ -559,57 +564,78 @@ footer {
     
     nav {
         gap: 10px;
-        padding-top: 8px; /* SUBE PALABRAS VERTICALMENTE */
+        padding-top: 8px;
     }
     
-    nav ul.nav-menu {
-        display: none;
-        flex-direction: column;
-        background: rgba(26, 60, 110, 0.95);
+    /* === OCULTAR MENÚ DESKTOP EN MÓVIL === */
+    .desktop-nav,
+    .desktop-nav .nav-menu,
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* === ACTIVAR CONTROLES MÓVIL === */
+    .mobile-controls {
+        display: flex !important;
+    }
+
+    /* === MENÚ MÓVIL - ESTILO PROFESIONAL === */
+    .mobile-menu {
+        display: block !important;
         position: absolute;
-        top: 80px; /* Debajo header (ajustado por altura 90px) */
+        top: 80px;
         right: 20px;
         width: 250px;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        opacity: 0;
-        transform: translateY(-10px);
-        z-index: 999;
-    }
-
-    nav ul.nav-menu.active {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    nav ul.nav-menu li a {
-        font-size: 1.1rem;
-        padding: 10px 0;
-        text-align: center;
-    }
-
-    .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.2);
+        padding: 15px 20px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(15, 43, 90, 0.98), rgba(30, 111, 184, 0.95));
         backdrop-filter: blur(10px);
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-        transform: translateY(-6px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        flex-direction: column;
+        gap: 8px;
+        z-index: 999;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: all 0.35s ease;
     }
 
-    .menu-toggle:hover {
-        background: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
+    .mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
     }
 
+    .mobile-menu li {
+        list-style: none;
+    }
+
+    .mobile-menu li a {
+        display: block;
+        color: white !important;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 14px 20px; /* Más espacio al tocar */
+        border-radius: 10px;
+        text-align: center;
+        background: transparent; /* ← FONDO INVISIBLE */
+        border: 1px solid transparent; /* ← SIN BORDE */
+        transition: all 0.35s ease;
+    }
+
+    .mobile-menu li a:hover {
+        background: rgba(30, 111, 184, 0.7); /* ← FONDO AZUL AL HOVER */
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.3); /* ← BORDE SUTIL */
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(30, 151, 212, 0.4);
+    }
+    /* === TU CÓDIGO ORIGINAL (SLIDERS, FOOTER, ETC.) === */
     .contact-layout {
         flex-direction: column;
         gap: 20px;
@@ -692,9 +718,9 @@ footer {
         top: 0; left: 0; right: 0; bottom: 0;
         background: linear-gradient(
             120deg,
-            var(--color-brillante) 0%,   /* Claro al inicio */
-            var(--color-degrade) 50%,    /* Transición media */
-            var(--color-principal) 100%  /* Oscuro predominante */
+            var(--color-brillante) 0%,
+            var(--color-degrade) 50%,
+            var(--color-principal) 100%
         );
         clip-path: path("M0,12 C250,8 600,-6 750,12 L750,120 L0,120 Z");
         box-shadow: 0 -6px 18px rgba(10, 40, 90, 0.3),
@@ -717,17 +743,5 @@ footer {
 
     footer a:hover {
         text-decoration: underline;
-    }
-
-    /* === ACTIVAR CONTROLES MÓVIL === */
-    .mobile-controls {
-        display: flex !important;
-    }
-
-    /* === OCULTAR MENÚ DESKTOP === */
-    .desktop-nav,
-    .desktop-nav .nav-menu,
-    .desktop-only {
-        display: none !important;
     }
 }

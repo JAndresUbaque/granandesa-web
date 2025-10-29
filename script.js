@@ -1,7 +1,6 @@
 // === MENÚ RESPONSIVE ===
 const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
+const navMenu = document.querySelector('.mobile-menu');
 if (menuToggle && navMenu) {
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
