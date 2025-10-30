@@ -56,3 +56,15 @@ sliders.forEach((wrapper) => {
         }
     });
 });
+
+// === CARRUSEL AUTOMÁTICO EN #INICIO ===
+const slides = document.querySelectorAll('.carousel-slide');  // Selecciona todos los elementos con class "carousel-slide". Esto crea un array de slides para iterar.
+let currentIndex = 0;  // Variable para el índice actual: Empieza en 0 (primer slide). Sirve para rastrear cuál slide mostrar.
+
+function showNextSlide() {  // Función: Cambia al siguiente slide.
+    slides[currentIndex].classList.remove('active');  // Quita la class "active" del slide actual: Esto lo oculta (opacidad 0 en CSS).
+    currentIndex = (currentIndex + 1) % slides.length;  // Incrementa el índice: +1, y usa % para volver a 0 si llega al final (ej. 3 % 3 = 0).
+    slides[currentIndex].classList.add('active');  // Agrega "active" al nuevo slide: Lo muestra (opacidad 1 en CSS).
+}
+
+setInterval(showNextSlide, 10000);  // setInterval: Ejecuta showNextSlide cada 5000 milisegundos (5 segundos). Es un temporizador automático.

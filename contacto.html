@@ -13,10 +13,10 @@
 <body>
 <header>
     <div class="logo">
-        <h1>Granandesa</h1>
+        <img src="img/logo.svg" alt="Granandesa">
     </div>
 
-    <!-- === CONTROLES MÓVIL (solo en móvil) === -->
+    <!-- CONTROLES MÓVIL -->
     <div class="mobile-controls">
         <button class="menu-toggle">☰</button>
         <a href="mailto:info@granandesa.com" class="institucional">
@@ -24,7 +24,7 @@
         </a>
     </div>
 
-    <!-- === MENÚ DESKTOP (solo en desktop) === -->
+    <!-- MENÚ DESKTOP -->
     <nav class="desktop-nav">
         <ul class="nav-menu">
             <li><a href="index.html">Inicio</a></li>
@@ -32,12 +32,20 @@
             <li><a href="productos.html">Productos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
-        <!-- 👤 AL FINAL en desktop -->
         <a href="mailto:info@granandesa.com" class="institucional desktop-only">
             <i class="fa-solid fa-user"></i>
         </a>
     </nav>
+
+    <!-- MENÚ MÓVIL (FUERA DE desktop-nav) -->
+    <ul class="nav-menu mobile-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html#nosotros">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
 </header>
+
     <main>
         <section id="contacto">
             <h2>Contáctanos</h2>

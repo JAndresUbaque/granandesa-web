@@ -3,7 +3,7 @@
     --color-principal: #0f2b5a;      /* azul marino profundo */
     --color-degrade: #1e6fb8;       /* tono intermedio */
     --color-brillante: #1e97d4;     /* azul claro del logo */
-    --color-secundario: #2A7BFF;    /* Azul vibrante para hover y botones */
+    --color-secundario: #1e6fb8;    /* Azul vibrante para hover y botones */
     --color-fondo: #FFFFFF;
     --color-texto: #333333;       
     --color-blanco: #FFFFFF;
@@ -33,7 +33,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    height: 80px;
+    height: 100px;
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -46,23 +46,33 @@ header::before {
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(
       100deg,
-      var(--color-principal) 0%,     /* oscuro domina */
-      var(--color-principal) 45%,    /* se mantiene fuerte */
-      var(--color-degrade) 70%,      /* leve transición */
-      var(--color-brillante) 95%     /* toque de luz al final */
+      var(--color-brillante) 17%,     /* oscuro domina */
+      var(--color-degrade) 28%,    /* se mantiene fuerte */
+      var(--color-principal) 70%,      /* leve transición */
+      var(--color-principal) 0%     /* toque de luz al final */
   );
   z-index: -1;
   box-shadow: 0 10px 25px rgba(10, 40, 90, 0.4),
               0 0 35px rgba(30, 151, 212, 0.4);
   transition: all 0.5s ease;
-  clip-path: path("M0,68 C250,60 600,75 950,63 C1150,58 1300,70 1400,65 L1400,0 L0,0 Z");
+  clip-path:path("M0,95 C250,87 600,102 950,90 C1150,85 1300,97 1400,92 L1400,0 L0,0 Z");
 }
 
-.logo h1 {
-    font-size: 1.3rem;
-    font-weight: 700;
+.logo {
+    /* Anula los estilos de texto que no aplican a la imagen */
     margin: 0;
-    transform: translateY(-6px);
+    font-size: initial;
+    font-weight: initial;
+    transform: translateX(-10px); 
+}
+
+/* Estilos para la imagen dentro del logo */
+.logo img {
+    height: 115px; /* Ajusta este valor (ej: 50px, 60px) hasta que quede perfecto */
+    width: auto;
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 /* ======== MENÚ DE NAVEGACIÓN ======== */
@@ -152,16 +162,68 @@ main section {
 }
 
 /* ======== HERO PRINCIPAL (PÁGINA DE INICIO) ======== */
+/* ======== HERO PRINCIPAL (PÁGINA DE INICIO) ======== */
 #inicio {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/granja-fondo.png') center/cover no-repeat;
-    color: var(--color-blanco);
-    text-align: center;
-    padding: 120px 20px;
-    border-radius: 0 0 30px 30px;
-    margin-bottom: 20px;
+    position: relative;  /* Posición relativa: Base para slides absolutos dentro. Repetición: anidamiento. */
+    overflow: hidden;    /* Overflow hidden: Corta cualquier contenido que salga del área. Repetición: mantiene espacio fijo sin expandir. */
+    color: var(--color-blanco);  /* Texto blanco para contraste. */
+    text-align: center;  /* Centrado general. */
+    padding: 0 20px;     /* Padding lados: Solo horizontal (quitamos vertical para no expandir). */
+    padding-top: 0px;  /* Padding-top: Espacio mínimo para header fijo (100px header + 20px margen). Repetición: compensa fixed sin crecer. */
+    border-radius: 0 0 30px 30px;  /* Bordes redondos abajo. */
+    margin-bottom: 20px; /* Espacio abajo original. */
+    height: 430px;       /* Height fija: EXACTO el espacio original. Repetición: no expande. */
+    background: transparent; /* Sin fondo extra. */
+}
+
+.carousel-container {
+   position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 35px 35px; /* ← Hereda redondeo inferior */
+    overflow: hidden;             /* ← Corta imagen en bordes redondos */
+}
+.carousel-slide {
+    position: absolute;  /* Absoluta: Superpone slides. Repetición: pila en mismo lugar. */
+    top: 0; left: 0;     /* Alineación tope-izquierda. */
+    width: 100%; height: 100%;  /* Cubre todo el contenedor (400px). */
+    background-size: cover;      /* Imagen llena. */
+    background-position: center; /* Centrada. */
+    background-repeat: no-repeat;/* Sin repetición. */
+    opacity: 0;          /* Oculto por defecto. */
+    transition: opacity 0.8s ease-in-out;  /* Fade suave. Repetición: animación. */
+    display: flex;       /* Flex para centrar. */
+    flex-direction: column; /* Apila elementos. */
+    justify-content: center; /* Centro vertical en 400px. Repetición: cabe en espacio fijo. */
+    align-items: center; /* Centro horizontal. */
+    padding: 20px;       /* Padding mínimo: Evita toque bordes sin expandir. Repetición: compacto. */
+    box-sizing: border-box; /* Incluye padding en height fija. */
+}
+
+.carousel-slide.active {
+    opacity: 1;          /* Visible. */
+    z-index: 2;          /* Encima. */
+}
+
+/* Gradiente detrás (legibilidad sin expandir) */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.45)); /* Oscurece. */
+    z-index: 1;
+}
+
+/* Contenido encima (texto + botón) */
+.carousel-slide > * {
+    position: relative;
+    z-index: 3;           /* Encima de gradiente. Repetición: visible. */
+    margin: 8px 0;       /* Margen mínimo entre h2, p, botón. Repetición: compacto. */
+    max-width: 85%;      /* Texto no estira en ancho. */
 }
 
 #inicio h2 {
+    padding-top: 30px;
     font-size: 2.2rem;
     margin-bottom: 15px;
 }
@@ -481,9 +543,10 @@ footer {
     height: 60px;
   background: linear-gradient(
       100deg,
-      var(--color-brillante) 0%,   /* oscuro al inicio */
-      var(--color-degrade) 35%,    /* transición intermedia */
-      var(--color-principal) 95%   /* toque claro al final */
+      var(--color-principal) 0%,     /* oscuro domina */
+      var(--color-principal) 45%,    /* se mantiene fuerte */
+      var(--color-degrade) 70%,      /* leve transición */
+      var(--color-brillante) 95%     /* toque de luz al final */
   );
   clip-path: path("M0,10 C300,20 800,-5 1400,15 L1400,160 L0,160 Z");
   box-shadow: 0 -10px 25px rgba(10, 40, 90, 0.35),
@@ -497,7 +560,7 @@ footer {
     display: none; /* Oculto en desktop */
     gap: 12px;     /* Espacio entre ☰ y 👤 */
     align-items: center;
-    margin-top: -12px; /* SUBE ambos */
+    margin-top: -14px; /* SUBE ambos */
 }
 
 .mobile-controls .menu-toggle,
@@ -505,8 +568,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 50%;
@@ -553,18 +616,22 @@ footer {
     }
 
     header::before {
-        clip-path: path("M0,60 C60,60 110,55 160,52 C190,50 220,50 250,52 C280,54 310,56 340,57 C370,58 400,58 430,58 C460,58 490,57 520,56 C550,54 580,52 610,52 C640,54 680,56 750,60 L750,0 L0,0 Z");
+        clip-path: path("M0,65 C60,65 110,60 160,57 C190,55 220,55 250,57 C280,59 310,61 340,62 C370,63 400,63 430,63 C460,63 490,63 520,61 C550,59 580,57 610,57 C640,59 680,61 750,65 L750,0 L0,0 Z");
         z-index: -1;
     }
     
-    .logo h1 {
-        font-size: 1.2rem;
+    .logo img {
+        height: 77px;
+        width: auto;
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 5px;
         transform: translateY(-10px);
     }
     
     nav {
         gap: 10px;
-        padding-top: 8px;
+        padding-top: 5px;
     }
     
     /* === OCULTAR MENÚ DESKTOP EN MÓVIL === */
@@ -586,7 +653,7 @@ footer {
         top: 80px;
         right: 20px;
         width: 250px;
-        padding: 15px 20px;
+        padding: 10px 15px;
         border-radius: 12px;
         background: linear-gradient(135deg, rgba(15, 43, 90, 0.98), rgba(30, 111, 184, 0.95));
         backdrop-filter: blur(10px);
@@ -635,6 +702,19 @@ footer {
         transform: translateY(-3px);
         box-shadow: 0 6px 15px rgba(30, 151, 212, 0.4);
     }
+    #inicio {
+    height: 300px;       /* Altura original en móvil. Repetición: fijo sin expandir. */
+    padding-top: 100px;  /* Menos para header móvil ~90px. */
+}
+
+    #inicio h2 { font-size: 1.1rem; }
+    #inicio p { font-size: 0.75rem; margin-bottom: 10px; }
+    .cta-button { padding: 8px 20px; font-size: 0.85rem;  margin-bottom: 7px; }
+  
+    #contactoIII  {
+        text-shadow: 0.5px 0.5px var(--color-secundario);
+    }
+
     /* === TU CÓDIGO ORIGINAL (SLIDERS, FOOTER, ETC.) === */
     .contact-layout {
         flex-direction: column;

@@ -13,7 +13,7 @@
 <body>
 <header>
     <div class="logo">
-        <h1>Granandesa</h1>
+        <img src="img/logo.svg" alt="Granandesa">
     </div>
 
     <!-- CONTROLES MÓVIL -->
@@ -47,11 +47,25 @@
 </header>
 <main>
     <section id="inicio">
-        <h2>Soluciones Nutricionales Innovadoras</h2>
-        <p>Apoyamos la productividad y sostenibilidad del sector agropecuario.</p>
-        <a href="contacto.html" class="cta-button">Contáctanos</a>
-    </section>
-    <section id="nosotros">
+    <div class="carousel-container">  <!-- Contenedor principal del carrusel: agrupa los slides y permite posicionarlos uno sobre otro. -->
+        <div class="carousel-slide active" style="background-image: url('img/granja-fondo2.png');">  <!-- Slide 1: Fondo con la imagen actual. "active" indica que es el primero visible. "style" aplica el fondo directamente aquí para simplicidad. -->
+            <h2>Soluciones Nutricionales Innovadoras</h2>  <!-- Título: Muestra el mensaje principal. Se repite en cada slide para que siempre esté visible. -->
+            <p>Apoyamos la productividad y sostenibilidad del sector agropecuario.</p>  <!-- Párrafo: Descripción breve. Se repite en cada slide. -->
+            <a href="contacto.html" class="cta-button">Contáctanos</a>  <!-- Botón: Enlace a contacto. Se repite en cada slide. -->
+        </div>
+        <div class="carousel-slide" style="background-image: url('img/granja-fondo.png');">  <!-- Slide 2: Fondo con la segunda imagen. Sin "active" porque empieza oculto. "style" aplica el fondo (se repite el concepto). -->
+            <h2>Soluciones Nutricionales Innovadoras</h2>  <!-- Título: Se repite para que aparezca en este slide. -->
+            <p>Apoyamos la productividad y sostenibilidad del sector agropecuario.</p>  <!-- Párrafo: Se repite. -->
+            <a href="contacto.html" class="cta-button">Contáctanos</a>  <!-- Botón: Se repite. -->
+        </div>
+        <div class="carousel-slide" style="background-image: url('img/granja-fondo3.png');">  <!-- Slide 3: Fondo con la tercera imagen. "style" aplica el fondo (repetido). -->
+            <h2>Soluciones Nutricionales Innovadoras</h2>  <!-- Título: Se repite. -->
+            <p>Apoyamos la productividad y sostenibilidad del sector agropecuario.</p>  <!-- Párrafo: Se repite. -->
+            <a href="contacto.html" class="cta-button">Contáctanos</a>  <!-- Botón: Se repite. -->
+        </div>
+    </div>
+</section>
+       <section id="nosotros">
         <h2>Nosotros</h2>
         <p>Granandesa es una empresa dedicada a la producción, comercialización y distribución de soluciones nutricionales para porcicultura, ganadería y avicultura.</p>
     </section>
@@ -77,7 +91,7 @@
     </section>
     <section id="contactoII">
         <h2>Contacto</h2>
-        <p>¿Quieres conocer más sobre nuestros productos? <a href="contacto.html"  class="cta-button">Contáctanos</a></p>
+        <p><div id="contactoIII">¿Quieres conocer más sobre nuestros productos?</div><a href="contacto.html"  class="cta-button">Contáctanos</a></p>
     </section>
 </main>
 <footer>
